@@ -17,12 +17,13 @@ COOKIES, SUKSES, GAGAL, XRP = {
 def BANNER():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(Panel("""[bold red]●[bold yellow] ●[bold green] ●[/]
-[bold red]    ______                      __                 
-   / ____/___ ___  __________  / /____  ____ ______
-  / /_  / __ `/ / / / ___/ _ \/ __/ _ \/ __ `/ ___/
- / __/ / /_/ / /_/ / /__/  __/ /_/  __/ /_/ / /    
-[bold white]/_/    \__,_/\__,_/\___/\___/\__/\___/\__,_/_/     
-        [italic white on red]Free XRP Tokens - Coded by Rozhak""", style="bold bright_black", width=56))
+[bold red]        __  _____   _  __ __ ___  
+   / / / /   | | |/ // //_/ |/ /
+  / /_/ / /| | |   // ,<  |   / 
+ / __  / ___ |/   |/ /| |/   |  
+/_/ /_/_/  |_/_/|_/_/ |_/_/|_|  
+                                
+        [italic white on red]Free XRP Tokens - Welcome To Haxkx""", style="bold bright_black", width=56))
 
 class CLAIM:
 
@@ -69,14 +70,14 @@ class CLAIM:
                 XRP.update({
                     "KEY": f"0.{self.XRP_earn}"
                 })
-                print(Panel(f"[italic green]Congratulations on receiving {XRP['KEY']} XRP, It has been deposited into your account balance and can be viewed on the dashboard!!", style="bold bright_black", width=56, title=">>> Sukses <<<"))
+                print(Panel(f"[italic green]Congratulations on receiving {XRP['KEY']} XRP, It has been deposited into your account balance and can be viewed on the dashboard!!", style="bold bright_black", width=56, title=">>> Sucess <<<"))
                 for sleep in range(60, 0, -1):
-                    print(f"[bold bright_black]   ╰─>[bold green] {sleep}[bold white]/[bold green]{XRP['KEY']}[bold white] Sukses:-[bold green]{len(SUKSES)}[bold white] Gagal:-[bold red]{len(GAGAL)}     ", end='\r')
+                    print(f"[bold bright_black]   ╰─>[bold green] {sleep}[bold white]/[bold green]{XRP['KEY']}[bold white] Success:-[bold green]{len(SUKSES)}[bold white] Problem:-[bold red]{len(GAGAL)}     ", end='\r')
                     time.sleep(1.0)
                 SUKSES.append(f'{response2.text}')
                 return ("0_0")
             elif 'you have already' in str(response2.text).lower():
-                print(Panel(f"[italic red]You have already claimed, please wait for the next wave!", style="bold bright_black", width=56, title=">>> Gagal <<<"))
+                print(Panel(f"[italic red]You have already claimed, please wait for the next wave!", style="bold bright_black", width=56, title=">>> Problem <<<"))
                 time.sleep(30)
                 GAGAL.append(f'{response2.text}')
                 return ("0_-") # You have already claimed, please wait for the next wave!
@@ -87,7 +88,7 @@ class CLAIM:
     def CHECK_LOGIN(self):
         BANNER()
         if COOKIES["KEY"] == None:
-            print(Panel(f"[italic white]Masukkan cookies akun faucetearner anda dan pastikan akun faucetearner anda sudah dalam keadaan login!", style="bold bright_black", width=56, title=">>> Cookies Faucetearner <<<", subtitle="╭──────", subtitle_align="left"))
+            print(Panel(f"[italic white]Enter your Faucetearner account cookies and make sure your Faucetearner account is logged in", style="bold bright_black", width=56, title=">>> Enter Cookies 🍪<<<", subtitle="╭──────", subtitle_align="left"))
             self.cookies = Console().input("[bold bright_black]   ╰─> ")
             if len(self.cookies) != 0:
                 COOKIES.update({
@@ -95,7 +96,7 @@ class CLAIM:
                 })
                 return ("0_0")
             else:
-                print(Panel(f"[italic red]Pengisian cookies harus dilakukan dengan benar dan valid. Data yang kosong atau tidak sesuai dapat menyebabkan proses selanjutnya terhambat!", style="bold bright_black", width=56, title=">>> Tidak Boleh Kosong <<<"))
+                print(Panel(f"[italic red]The filling of cookies must be done correctly and validly. Empty or incorrect data can hinder the next process!", style="bold bright_black", width=56, title=">>> Must not be empty <<<"))
                 exit()
         else:
             return ("0_0")
@@ -103,12 +104,12 @@ class CLAIM:
     def XRP(self):
         try:
             self.CHECK_LOGIN()
-            print(Panel(f"[italic white]Penambangan token XRP sedang dilakukan. Anda dapat menghentikan prosesnya kapan saja dengan menekan tombol CTRL + Z.", style="bold bright_black", width=56, title=">>> Catatan <<<"))
+            print(Panel(f"[italic white]XRP token mining is currently ongoing. You can stop the process anytime by pressing the CTRL + Z button.", style="bold bright_black", width=56, title=">>> Note <<<"))
             while True:
                 try:
                     self.EXECUTION()
                 except (RequestException):
-                    print("[bold bright_black]   ╰─>[bold red] KONEKSI BERMASALAH!", end='\r')
+                    print("[bold bright_black]   ╰─>[bold red] Connection problem !", end='\r')
                     time.sleep(10.5)
                     continue
                 except (KeyboardInterrupt):
