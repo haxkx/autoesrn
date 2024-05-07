@@ -9,7 +9,7 @@ except (Exception) as e:
     exit(f"[Error]{str(e).capitalize()}!")
 
 COOKIES, SUKSES, GAGAL, XRP = {
-    "KEY": "pid=937802681794; googtrans=/en/en; login=1; user=937802681794-2402%3A3a80%3A41e0%3A3352%3A0%3A41%3Af73c%3A3101; show_nt1=1; Hm_lvt_2b147ccaeef7e49f5f9553cadfdf8428=1715041089; Hm_lpvt_2b147ccaeef7e49f5f9553cadfdf8428=1715042669"
+    "KEY": "pid=937802681794; googtrans=/en/en; login=1; user=937802681794-2402%3A3a80%3A41e0%3A3352%3A0%3A41%3Af73c%3A3101; show_nt1=1; Hm_lvt_2b147ccaeef7e49f5f9553cadfdf8428=1715041089; show_wnt=1; Hm_lpvt_2b147ccaeef7e49f5f9553cadfdf8428=1715074151"
 }, [], [], {
     "KEY": 0.000000
 }
