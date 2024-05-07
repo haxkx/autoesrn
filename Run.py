@@ -9,7 +9,7 @@ except (Exception) as e:
     exit(f"[Error]{str(e).capitalize()}!")
 
 COOKIES, SUKSES, GAGAL, XRP = {
-    "KEY": None
+    "KEY": "pid=937802681794; googtrans=/en/en; login=1; user=937802681794-2402%3A3a80%3A41e0%3A3352%3A0%3A41%3Af73c%3A3101; show_nt1=1; Hm_lvt_2b147ccaeef7e49f5f9553cadfdf8428=1715041089; Hm_lpvt_2b147ccaeef7e49f5f9553cadfdf8428=1715042669"
 }, [], [], {
     "KEY": 0.000000
 }
@@ -47,7 +47,7 @@ class CLAIM:
                 'Referer': 'https://faucetearner.org/dashboard.php',
                 'Host': 'faucetearner.org',
             })
-            response = r.get('https://faucetearner.org/faucet.php', cookies = {
+            response = r.get('https://faucetearner.org/faucet.php', cookies={
                 'Cookie': COOKIES['KEY']
             })
             r.headers.update({
@@ -59,18 +59,19 @@ class CLAIM:
                 'Host': 'faucetearner.org',
                 'Origin': 'https://faucetearner.org',
             })
-            response2 = r.post('https://faucetearner.org/api.php?act=faucet', data = {}, cookies = {
+            response2 = r.post('https://faucetearner.org/api.php?act=faucet', data={}, cookies={
                 'Cookie': COOKIES['KEY']
             })
             if 'congratulations' in str(response2.text).lower():
-                try: # Congratulations on receiving 0.000000 It has been deposited into your account balance and can be viewed on the dashboard!
+                try:  # Congratulations on receiving 0.000000 It has been deposited into your account balance and can be viewed on the dashboard!
                     self.XRP_earn = (str(response2.text).split(' XRP')[0].split('0.')[1])
                 except (IndexError):
                     self.XRP_earn = ("0.000000")
                 XRP.update({
                     "KEY": f"0.{self.XRP_earn}"
                 })
-                print(Panel(f"[italic green]Congratulations on receiving {XRP['KEY']} XRP, It has been deposited into your account balance and can be viewed on the dashboard!!", style="bold bright_black", width=56, title=">>> Sucess <<<"))
+                print(Panel(f"[italic green]Congratulations on receiving {XRP['KEY']} XRP, It has been deposited into your account balance and can be viewed on the dashboard!!",
+                            style="bold bright_black", width=56, title=">>> Sucess <<<"))
                 for sleep in range(60, 0, -1):
                     print(f"[bold bright_black]   ╰─>[bold green] {sleep}[bold white]/[bold green]{XRP['KEY']}[bold white] Success:-[bold green]{len(SUKSES)}[bold white] Problem:-[bold red]{len(GAGAL)}     ", end='\r')
                     time.sleep(1.0)
@@ -80,15 +81,17 @@ class CLAIM:
                 print(Panel(f"[italic red]You have already claimed, please wait for the next wave!", style="bold bright_black", width=56, title=">>> Problem <<<"))
                 time.sleep(30)
                 GAGAL.append(f'{response2.text}')
-                return ("0_-") # You have already claimed, please wait for the next wave!
+                return ("0_-")  # You have already claimed, please wait for the next wave!
             else:
                 print(Panel(f"[italic red]{str(response2.text).capitalize()}!", style="bold bright_black", width=56, title=">>> Error <<<"))
                 return ("-_-")
 
     def CHECK_LOGIN(self):
         BANNER()
-        if COOKIES["KEY"] == None:
-            print(Panel(f"[italic white]Enter your Faucetearner account cookies and make sure your Faucetearner account is logged in", style="bold bright_black", width=56, title=">>> Enter Cookies 🍪<<<", subtitle="╭──────", subtitle_align="left"))
+
+        if COOKIES["KEY"] is None:
+            print(Panel(f"[italic white]Enter your Faucetearner account cookies and make sure your Faucetearner account is logged in", style="bold bright_black", width=56,
+                        title=">>> Enter Cookies 🍪<<<", subtitle="╭──────", subtitle_align="left"))
             self.cookies = Console().input("[bold bright_black]   ╰─> ")
             if len(self.cookies) != 0:
                 COOKIES.update({
@@ -96,7 +99,8 @@ class CLAIM:
                 })
                 return ("0_0")
             else:
-                print(Panel(f"[italic red]The filling of cookies must be done correctly and validly. Empty or incorrect data can hinder the next process!", style="bold bright_black", width=56, title=">>> Must not be empty <<<"))
+                print(Panel(f"[italic red]The filling of cookies must be done correctly and validly. Empty or incorrect data can hinder the next process!",
+                            style="bold bright_black", width=56, title=">>> Must not be empty <<<"))
                 exit()
         else:
             return ("0_0")
@@ -104,7 +108,8 @@ class CLAIM:
     def XRP(self):
         try:
             self.CHECK_LOGIN()
-            print(Panel(f"[italic white]XRP token mining is currently ongoing. You can stop the process anytime by pressing the CTRL + Z button.", style="bold bright_black", width=56, title=">>> Note <<<"))
+            print(Panel(f"[italic white]XRP token mining is currently ongoing. You can stop the process anytime by pressing the CTRL + Z button.",
+                        style="bold bright_black", width=56, title=">>> Note <<<"))
             while True:
                 try:
                     self.EXECUTION()
